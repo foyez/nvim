@@ -176,3 +176,25 @@ harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 | `Ctrl + Shift + C` | Copy selected text                  |
 | `Ctrl + Shift + V` | Paste from clipboard                |
 | `Ctrl + Shift + F` | Search (like `Ctrl + F` in browser) |
+
+## Shortcut keymaps of shell (e.g., Bash, Zsh, Fish)
+
+### 🔤 Delete Word
+
+| Shortcut   | Action                    | Shell                 |
+| ---------- | ------------------------- | --------------------- |
+| `Ctrl + W` | Delete word before cursor | All (bash, zsh, fish) |
+| `Alt + D`  | Delete word after cursor  | All                   |
+
+---
+
+### 📄 Delete Line
+
+| Shortcut   | Action                      |
+| ---------- | --------------------------- |
+| `Ctrl + U` | Delete to beginning of line |
+| `Ctrl + K` | Delete to end of line       |
+| `Ctrl + A` | Move to start of line       |
+| `Ctrl + E` | Move to end of line         |
+
+---
