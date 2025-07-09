@@ -95,3 +95,84 @@ harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 }
 ```
 
+## NeoVim shorcut keymaps
+
+### 🔧 **Insert Mode**
+
+| Shortcut   | Action                 |
+| ---------- | ---------------------- |
+| `jk`       | Escape insert mode     |
+| `Ctrl + u` | Uppercase current word |
+
+---
+
+### 🔧 **Normal Mode**
+
+#### 🧹 General
+
+| Shortcut     | Action                            |
+| ------------ | --------------------------------- |
+| `<leader>nh` | Clear search highlights (`:nohl`) |
+| `x`          | Delete character without yanking  |
+| `<leader>+`  | Increment number (`<C-a>`)        |
+| `<leader>-`  | Decrement number (`<C-x>`)        |
+
+#### 🪟 Window Management
+
+| Shortcut     | Action                         |
+| ------------ | ------------------------------ |
+| `<leader>sv` | Split window vertically        |
+| `<leader>sh` | Split window horizontally      |
+| `<leader>se` | Make splits equal size         |
+| `<leader>sx` | Close current split (`:close`) |
+
+#### 🗂️ Tab Management
+
+| Shortcut     | Action                          |
+| ------------ | ------------------------------- |
+| `<leader>to` | Open new tab (`:tabnew`)        |
+| `<leader>tx` | Close current tab (`:tabclose`) |
+| `<leader>tn` | Next tab (`:tabn`)              |
+| `<leader>tp` | Previous tab (`:tabp`)          |
+
+#### 🖥️ Plugin: Maximizer
+
+| Shortcut     | Action                 |
+| ------------ | ---------------------- |
+| `<leader>sm` | Toggle maximize window |
+
+#### 🌳 Plugin: NvimTree
+
+| Shortcut     | Action                                 |
+| ------------ | -------------------------------------- |
+| `<leader>ee` | Toggle NvimTree                        |
+| `<leader>ef` | Toggle NvimTree and focus current file |
+| `<leader>ec` | Collapse NvimTree folders              |
+| `<leader>er` | Refresh NvimTree                       |
+
+#### 🔍 Plugin: Telescope
+
+| Shortcut     | Action                       |
+| ------------ | ---------------------------- |
+| `<leader>ff` | Find files                   |
+| `<leader>fr` | Open recent files            |
+| `<leader>fs` | Live grep (search by string) |
+| `<leader>fc` | Search word under cursor     |
+
+---
+
+## Wezterm shortcut keymaps
+
+| Shortcut           | Action                              |
+| ------------------ | ----------------------------------- |
+| `Ctrl + Shift + T` | Open new tab                        |
+| `Ctrl + Shift + W` | Close current tab                   |
+| `Ctrl + Shift + [` | Previous tab                        |
+| `Ctrl + Shift + ]` | Next tab                            |
+| `Ctrl + Shift + N` | Spawn new window                    |
+| `Alt + Enter`      | Toggle full screen                  |
+| `Ctrl + Shift + R` | Reload configuration                |
+| `Ctrl + Shift + P` | Show command palette (if enabled)   |
+| `Ctrl + Shift + C` | Copy selected text                  |
+| `Ctrl + Shift + V` | Paste from clipboard                |
+| `Ctrl + Shift + F` | Search (like `Ctrl + F` in browser) |
