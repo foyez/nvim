@@ -29,6 +29,9 @@ keymap.set('n', '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>')
 keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>')
 keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>')
 
+-- Exit terminal mode
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>ff', builtin.find_files)
