@@ -126,6 +126,8 @@ harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 | `<leader>ef` | Toggle & focus current file |
 | `<leader>ec` | Collapse all folders        |
 | `<leader>er` | Refresh the tree            |
+| `a`          | Create a file               |
+| `d`          | Create a file               |
 
 ➡ **Plugin:** [`nvim-tree/nvim-tree.lua`](https://github.com/nvim-tree/nvim-tree.lua)
 
@@ -337,3 +339,5 @@ g => match multiple occurences in the same line.
 - `!node filename.ext` - run a file
 - `:wqa` - write (save) and quit on all tabs
 - `:set list` - make spaces and tabs visible
+- `:e newfile.txt` - create newfile.txt if it doesn't exist
+- `:!mkdir -p dir` - create a directory
