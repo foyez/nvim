@@ -104,7 +104,7 @@ harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 ```
 
 - C/C++ LSP Setup (clangd)
-  - Download the clangbinary: https://github.com/foyez/cpp/tree/main/compilers/clangd-llvm/bin
+  - Download the clangbinary: https://github.com/foyez/cpp/tree/main/lsp/clangd-llvm/bin
   - Put it in: `~/clangd-llvm/bin/`
   - Add the path in `~/.zshrc`: `export PATH="$HOME/clangd-llvm/bin:$PATH"`
 
