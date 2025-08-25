@@ -111,35 +111,49 @@ return {
 
 ## NeoVim keymaps
 
-### 🔍 **Telescope**
-
-| Shortcut     | Action                  |
-| ------------ | ----------------------- |
-| `<leader>ff` | Find files              |
-| `<leader>fr` | Show recent files       |
-| `<leader>fs` | Live grep (search text) |
-| `<leader>fc` | Grep word under cursor  |
-
-➡ **Plugin:** [`nvim-telescope/telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim)
+Here's a clean and organized table of your Neovim keymaps with shortcut keys and their descriptions:
 
 ---
 
-### 📁 **NvimTree (File Explorer)**
+### 🔧 **Insert Mode**
 
-| Shortcut     | Action                      |
-| ------------ | --------------------------- |
-| `<leader>ee` | Toggle NvimTree             |
-| `<leader>ef` | Toggle & focus current file |
-| `<leader>ec` | Collapse all folders        |
-| `<leader>er` | Refresh the tree            |
-| `a`          | Create a file               |
-| `d`          | Create a file               |
-
-➡ **Plugin:** [`nvim-tree/nvim-tree.lua`](https://github.com/nvim-tree/nvim-tree.lua)
+| Shortcut   | Action                 |
+| ---------- | ---------------------- |
+| `jk`       | Escape insert mode     |
+| `Ctrl + u` | Uppercase current word |
 
 ---
 
-### 🖥️ **vim-maximizer**
+### 🔧 **Normal Mode**
+
+#### 🧹 General
+
+| Shortcut     | Action                            |
+| ------------ | --------------------------------- |
+| `<leader>nh` | Clear search highlights (`:nohl`) |
+| `x`          | Delete character without yanking  |
+| `<leader>+`  | Increment number (`<C-a>`)        |
+| `<leader>-`  | Decrement number (`<C-x>`)        |
+
+#### 🪟 Window Management
+
+| Shortcut     | Action                         |
+| ------------ | ------------------------------ |
+| `<leader>sv` | Split window vertically        |
+| `<leader>sh` | Split window horizontally      |
+| `<leader>se` | Make splits equal size         |
+| `<leader>sx` | Close current split (`:close`) |
+
+#### 🗂️ Tab Management
+
+| Shortcut     | Action                          |
+| ------------ | ------------------------------- |
+| `<leader>to` | Open new tab (`:tabnew`)        |
+| `<leader>tx` | Close current tab (`:tabclose`) |
+| `<leader>tn` | Next tab (`:tabn`)              |
+| `<leader>tp` | Previous tab (`:tabp`)          |
+
+#### 🖥️ Plugin: Maximizer
 
 | Shortcut     | Action                 |
 | ------------ | ---------------------- |
@@ -147,29 +161,29 @@ return {
 
 ➡ **Plugin:** [`szw/vim-maximizer`](https://github.com/szw/vim-maximizer)
 
----
+#### 🌳 Plugin: NvimTree (File Explorer)
 
-### 🧭 **Tmux Navigator**
+| Shortcut     | Action                                 |
+| ------------ | -------------------------------------- |
+| `<leader>ee` | Toggle NvimTree                        |
+| `<leader>ef` | Toggle NvimTree and focus current file |
+| `<leader>ec` | Collapse NvimTree folders              |
+| `<leader>er` | Refresh NvimTree                       |
+| `a`          | Create a file                          |
+| `d`          | Delete a file                          |
 
-| Shortcut   | Action                   |
-| ---------- | ------------------------ |
-| `Ctrl + h` | Move to left split/pane  |
-| `Ctrl + j` | Move to below split/pane |
-| `Ctrl + k` | Move to above split/pane |
-| `Ctrl + l` | Move to right split/pane |
-| `Ctrl + \` | Move to last active pane |
+➡ **Plugin:** [`nvim-tree/nvim-tree.lua`](https://github.com/nvim-tree/nvim-tree.lua)
 
-➡ **Plugin:** [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator)
+#### 🔍 Plugin: Telescope
 
----
+| Shortcut     | Action                       |
+| ------------ | ---------------------------- |
+| `<leader>ff` | Find files                   |
+| `<leader>fr` | Open recent files            |
+| `<leader>fs` | Live grep (search by string) |
+| `<leader>fc` | Search word under cursor     |
 
-### 🎓 **42header**
-
-| Shortcut     | Action                  |
-| ------------ | ----------------------- |
-| `:Stdheader` | Insert 42 school header |
-
-➡ **Plugin:** [`42paris/42header`](https://github.com/42Paris/42header)
+➡ **Plugin:** [`nvim-telescope/telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim)
 
 ---
 
