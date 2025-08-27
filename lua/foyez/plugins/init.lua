@@ -175,6 +175,15 @@ return {
     end,
   },
 
+  -- 💬 Commenting utility
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+
   -- 💾 Session management (save/restore window layout, buffers, etc.)
   {
     "rmagatti/auto-session",
@@ -195,8 +204,8 @@ return {
     "42paris/42header",
     lazy = false,
     config = function()
-      vim.g.user42 = "foyez"
-      vim.g.mail42 = "foyez@student.42.fr"
+      vim.g.user42 = "kaahmed"
+      vim.g.mail42 = "kaahmed@student.42.fr"
     end,
   },
 } 
