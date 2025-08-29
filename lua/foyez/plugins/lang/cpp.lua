@@ -3,52 +3,36 @@ return {
 	{
     "neovim/nvim-lspconfig",
 		ft = { "c", "cpp" },
-		dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      -- Optional but nice: extras for inlay hints, AST, type hierarchy, etc.
-      "p00f/clangd_extensions.nvim",
-    },
     config = function()
-      local lspconfig = require("lspconfig")
-      vim.diagnostic.config({
-        virtual_text = true,
-        signs = true,
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
-      })
-      lspconfig.clangd.setup({
+      local lspconfig = require("foyez.lsp")
+      local util = require("lspconfig.util")
+
+      lspconfig.setup("clangd", {
         cmd = {
 					"clangd",
 					"--background-index",
-					"--clang-tidy",									-- enable clang-tidy
-					"--header-insertion=iwyu",			-- add missing icludes (fix-its)
-					"--completion-style=detailed",
-					"--fallback-style=LLVM",				-- default style when no .clang-format
+					"--clang-tidy",
+          "--completion-style=detailed",
+          "--header-insertion=never",
+          "--log=verbose",                -- log root/config decisions to lsp.log
+          "--enable-config",              -- read project .clangd
 				},
-        filetypes = { "c", "cpp" },
-        root_dir = lspconfig.util.root_pattern(
-					"compile_commands.json",
-					"compile_flags.txt",
-					".clangd",
-					".git"
-				),
-        capabilities = {
-          textDocument = {
-            completion = {
-              dynamicRegistration = false,
-            },
+        root_dir = function(fname)
+          return util.root_pattern(
+            "compile_commands.json",
+            "compile_flags.txt",
+            ".clangd",
+            ".git"
+          )(fname) or util.path.dirname(fname)
+        end,
+        init_options = {
+          inlayHints = {
+            parameterNames = { enabled = "all" },
+            typeHints = true,
+            -- other options: "all" | "literals" | "none"
           },
         },
       })
-
-			-- Nice extras (inlay hints etc.)
-      pcall(function()
-        require("clangd_extensions").setup({
-          inlay_hints = { inline = vim.fn.has("nvim-0.10") == 1 }, -- inline if on 0.10+
-        })
-      end)
     end,
   },
 }
