@@ -8,8 +8,11 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    opts = { ensure_installed = { "clangd" }, 
-    automatic_installation = true },
+    opts = { 
+      ensure_installed = {}, 
+      automatic_installation = true,
+      handlers = {}, -- ❗ prevent auto-setup
+    },
   },
 	-- ⚙️ LSP: clangd (with clang-tidy + inlay hints)
 	{
