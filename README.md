@@ -171,6 +171,7 @@ Here's a clean and organized table of your Neovim keymaps with shortcut keys and
 | `<leader>er` | Refresh NvimTree                       |
 | `a`          | Create a file                          |
 | `d`          | Delete a file                          |
+| `r`          | Rename a file                          |
 
 ➡ **Plugin:** [`nvim-tree/nvim-tree.lua`](https://github.com/nvim-tree/nvim-tree.lua)
 

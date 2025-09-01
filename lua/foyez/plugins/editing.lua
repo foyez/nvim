@@ -1,5 +1,8 @@
 return {
 	-- 💬 Commenting toggling
+	-- gcc → curr line
+	-- gbc → block on the cur line
+	-- gc → selection (visual mode)
   {
     "numToStr/Comment.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -57,8 +60,9 @@ return {
 	-- 🪟 Toggle maximize current split
 	{
 		"szw/vim-maximizer",
+    cmd = { "MaximizerToggle" },
 		keys = {
-			{ "<leader>m", "<cmd>MaximizerToggle<CR>" },
+			{ '<leader>sm', ':MaximizerToggle<CR>', desc = 'Toggle maximize split' },
 		},
 	},
 }
