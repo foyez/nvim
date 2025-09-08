@@ -153,6 +153,15 @@ Here's a clean and organized table of your Neovim keymaps with shortcut keys and
 | `<leader>tn` | Next tab (`:tabn`)              |
 | `<leader>tp` | Previous tab (`:tabp`)          |
 
+#### 🧭 Navigation
+
+| Shortcut         | Action                                         |
+| ---------------- | ---------------------------------------------- |
+| `gd`             | Go to definition (LSP-aware if using `clangd`) |
+| `<C-o>`          | Jump back to previous cursor position          |
+| `<C-i>`          | Jump forward (after going back)                |
+| `<C-^>` or `:e#` | Toggle to the previous file                    |
+
 #### 🖥️ Plugin: Maximizer
 
 | Shortcut     | Action                 |
