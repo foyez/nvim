@@ -19,21 +19,24 @@ return {
 			-- you can set more options here:
 			-- openai = { model = "...", endpoint = "...", ... }
 			-- suggestion, auto_suggestions_provider, etc
-		},
-		providers = {
-			-- OpenAI Config 
-      openai = {
-        endpoint = "https://api.openai.com/v1",
-        model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-        temperature = 0,
-        max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-      },
-      
-      -- Ollama Config
-      ollama = {
-        model = "qwen3:1.7b",
-      },
+
+			providers = {
+				-- OpenAI Config 
+				openai = {
+					endpoint = "https://api.openai.com/v1",
+					model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+					extra_request_body = {
+						temperature = 0,
+						max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+					},
+				},
+				
+				-- Ollama Config
+				ollama = {
+					model = "qwen3:1.7b",
+				},
+			},
 		},
 		config = function(_, opts)
 			require("avante").setup(opts)

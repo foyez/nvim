@@ -16,12 +16,12 @@ return {
           enabled = false
         },
         filetypes = {
+          ["*"] = false, -- disable for all filetypes
           markdown = true,
           help = true,
           html = true,
           javascript = true,
           typescript = true,
-          ["*"] = true
         },
       })
 
