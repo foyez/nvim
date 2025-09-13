@@ -1,21 +1,15 @@
 local keymap = vim.keymap
+local opts = { noremap = true, silent = true }
 
 -- ========================================================================
 -- 🏠 General
 -- ========================================================================
 
--- Better escape in insert mode
-keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
-
--- Uppercase current word
-keymap.set("i", "<C-u>", "<Esc>viwUea", { desc = "Uppercase word under cursor" })
-
--- Clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear highlights" })
-
 -- Delete single character without copying into register
 keymap.set("n", "x", '"_x', { desc = "Delete character (no yank)" })
 
+-- Select all
+keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- ========================================================================
 -- 🔢 Numbers
