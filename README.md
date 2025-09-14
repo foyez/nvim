@@ -78,7 +78,11 @@ return {
   font = wezterm.font_with_fallback {
     {
       family = 'JetBrainsMono Nerd Font',
-      harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+      harfbuzz_features = {
+              "calt=1", -- enable standard ligatures (arrows)
+              "clig=0", -- disable contextual ligatures
+              "liga=0", -- disable contextual alternatives
+      },
     },
     -- Add more fallback fonts here if needed
   },
