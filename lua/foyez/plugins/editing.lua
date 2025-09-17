@@ -66,4 +66,30 @@ return {
 			{ '<leader>sm', ':MaximizerToggle<CR>', desc = 'Toggle maximize split' },
 		},
 	},
+
+	-- 🧘‍♂️ Zen Mode: distraction-free editing
+	{
+		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
+		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+		config = function()
+			require("zen-mode").setup({
+				window = {
+					backdrop = 0.95,  -- shade the background
+					width = 100,      -- width of the zen window
+					options = {
+						number = true,        -- hide line numbers
+						relativenumber = false,-- hide relative numbers
+						signcolumn = "no",     -- hide git signs
+					},
+				},
+				plugins = {
+					gitsigns = { enabled = false },
+					tmux = { enabled = true },
+					kitty = { enabled = false, font = "+2" },
+					wezterm = { enabled = false, font = "+2" },
+				},
+			})
+		end,
+	},
 }

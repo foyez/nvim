@@ -127,8 +127,13 @@ return {
 						{
 							'filename',
 							path = 1, -- relative path
+              symbols = { modified = "" },
 						},
 					},
+          lualine_x = {
+            "encoding",   -- keeps encoding like utf-8
+            "fileformat", -- keeps fileformat like unix/dos
+          },       -- remove "filetype"
 				},
 			})
     end,
