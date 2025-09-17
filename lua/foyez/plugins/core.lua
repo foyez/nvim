@@ -73,14 +73,28 @@ return {
     branch = "master",
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
-    dependencies = { "windwp/nvim-ts-autotag" },
+    dependencies = {
+			"windwp/nvim-ts-autotag", -- auto-close & auto-rename HTML/TSX tags
+		},
     config = function()
       local treesitter = require("nvim-treesitter.configs")
+
       treesitter.setup({
         highlight = { enable = true },
         indent = { enable = true },
         autotag = { enable = true },
-        ensure_installed = { "asm", "c", "bash", "cpp", "lua", "make" },
+        ensure_installed = {
+					"asm",
+					"bash",
+					"c",
+					"cpp",
+					"go",
+					"javascript",
+					"make",
+					"lua",
+					"python",
+					"typescript",
+				},
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -109,22 +123,27 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff" },
-					lualine_c = { 'filename' },
+					lualine_c = {
+						{
+							'filename',
+							path = 1, -- relative path
+						},
+					},
 				},
 				winbar = {
 					lualine_c = {
 						{
 							"filename",
-							path = 1, -- relative path for eatch window
-						}
+							path = 1, -- relative path for each active window
+						},
 					},
 				},
 				inactive_winbar = {
 					lualine_c = {
 						{
 							"filename",
-							path = 1, -- relative path for eatch window
-						}
+							path = 1, -- relative path for each inactive window
+						},
 					},
 				}
 			})

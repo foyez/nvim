@@ -34,9 +34,10 @@ return {
 	-- Auto-pairs ( (), {}, [], "", '' … like VSCode)
 	{
 		"windwp/nvim-autopairs",
-		event = "InsertEnter",
+		event = "InsertEnter", -- load plugin only when entering Insert mode
 		config = function()
 			local npairs = require("nvim-autopairs")
+
 			npairs.setup({
 				check_ts = true, -- enable treesitter integration
 				ts_config = {
@@ -44,7 +45,7 @@ return {
 					javascript = { "template_string" },
 				},
 				fast_wrap = {
-					map = "<M-e>", -- Alt+e to wrap with brackets/quotes
+					map = "<M-e>", -- trigger fast wrap with Alt+e
 					chars = { "{", "[", "(", '"', "'" },
 					pattern = [=[[%'%"%)%>%]%)%}%,]]=],
 					end_key = "$",
