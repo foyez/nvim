@@ -5,13 +5,13 @@ return {
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('gitsigns').setup {
-        signs = {
-          add          = { text = '│' },  -- green
-          change       = { text = '│' },  -- blue
-          delete       = { text = '_' },  -- red
-          topdelete    = { text = '‾' },
-          changedelete = { text = '~' },
-        },
+				signs = {
+					add          = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr' },
+					change       = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr' },
+					delete       = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr' },
+					topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr' },
+					changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr' },
+				},
         signcolumn = true,  -- show symbols in sign column
         numhl      = false, -- set true if you want line numbers highlighted instead
         linehl     = false, -- set true if you want full line highlighted

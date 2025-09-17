@@ -100,7 +100,34 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local custom_theme = require("lualine.themes.everforest")
-      require("lualine").setup({ options = { theme = custom_theme } })
+
+      require("lualine").setup({
+				options = {
+					theme = custom_theme,
+					globalstatus = true, -- single statusline accross all windows
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff" },
+					lualine_c = { 'filename' },
+				},
+				winbar = {
+					lualine_c = {
+						{
+							"filename",
+							path = 1, -- relative path for eatch window
+						}
+					},
+				},
+				inactive_winbar = {
+					lualine_c = {
+						{
+							"filename",
+							path = 1, -- relative path for eatch window
+						}
+					},
+				}
+			})
     end,
   },
 
