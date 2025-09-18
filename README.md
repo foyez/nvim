@@ -276,22 +276,25 @@ These aren't from plugins but are part of custom mappings:
 
 ## Normal Mode
 
-#### Basic Navigation
+### Navigation
 
 - `h` → left (going home)
 - `j` → down (jumping down)
 - `k` → up (kicking up)
 - `l` → right
 - `5k` → 5 lines up
+- `5j` → 5 lines down
 
-#### Navigate by word
+*Navigate by word*
 
-- `b` → Move backword by word (letters,numbers and underscores)
-- `B` → Move backword by WORD (till whitespace)
-- `w` → Move forward by word
-- `W` → Move forward by WORD
+- `w` →	Moves to beginning of next word	word (letters,numbers and underscores)
+- `W` → Moves to beginning of next WORD (till witespace)
+- `e` →	Moves to end of current/next word
+- `E` →	Moves to end of current/next WORD
+- `b` →	Moves to beginning of current/previous word
+- `B` → Moves to beginning of current/previous WORD
 
-#### Move to specific position
+*Move to specific position*
 
 - `$` → Move to the end of the line
 - `^` → Move to the first non-blank character of the line
@@ -299,6 +302,8 @@ These aren't from plugins but are part of custom mappings:
 
 - `ctrl+u` → page up
 - `ctrl+d` → page down
+- `ctrl-f` → full page forward
+- `ctrl-b` → full page backward
 
 - `5G` → move to 5th line
 
@@ -306,7 +311,24 @@ These aren't from plugins but are part of custom mappings:
 - `M` → Move to the Middle of the screen (Middle)
 - `L` → Move to the Low of the screen (Low)
 
-#### Copy, Paste, Delete & Correct
+*Jump by Paragraph (`{` and `}`)*
+
+- `{` → previous paragraph
+- `}` → next paragraph
+
+*Navigation cheatsheet*
+
+- Jump by words: `w`, `e`, `b`
+- Jump by paragraphs: `{` and `}`
+- Jump by search: `/pattern` and `n/N`
+- Go to specific line: `:{line_number}` or `{line_number}G` (e.g. 42G)
+- Start/end of file: `gg` (top), `G` (bottom)
+- `10j` → move down 10 lines
+- `50k` → move up 50 lines
+- `Ctrl-d` and `Ctrl-u` → move half a screen
+- `Ctrl-f` and `Ctrl-b` → move a full screen
+
+### Copy, Paste, Delete & Correct
 
 - `yy` → copy line (y for yank)
 - `yw` → copy token
