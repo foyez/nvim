@@ -11,6 +11,9 @@ keymap.set("n", "x", '"_x', { desc = "Delete character (no yank)" })
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
+-- Toggle wrap line
+keymap.set("n", "<leader>w", ":set wrap!<CR>", { noremap = true, silent = true })
+
 -- ========================================================================
 -- 🔢 Numbers
 -- ========================================================================

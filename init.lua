@@ -22,6 +22,6 @@ vim.g.maplocalleader = " "
 -- ======================================================================
 
 require("foyez.lazy")
-require("foyez.core.options")
-require("foyez.core.keymaps")
-require("foyez.core.colorscheme")
+require("foyez.config.options")
+require("foyez.config.keymaps")
+require("foyez.config.colorscheme")
