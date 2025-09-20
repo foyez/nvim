@@ -176,15 +176,15 @@ Here's a clean and organized table of your Neovim keymaps with shortcut keys and
 
 #### 🌳 Plugin: NvimTree (File Explorer)
 
-| Shortcut     | Action                                 |
-| ------------ | -------------------------------------- |
-| `<leader>ee` | Toggle NvimTree                        |
-| `<leader>ef` | Toggle NvimTree and focus current file |
-| `<leader>ec` | Collapse NvimTree folders              |
-| `<leader>er` | Refresh NvimTree                       |
-| `a`          | Create a file                          |
-| `d`          | Delete a file                          |
-| `r`          | Rename a file                          |
+| Shortcut     | Action                                                    |
+| ------------ | --------------------------------------------------------- |
+| `<leader>ee` | Toggle NvimTree                                           |
+| `<leader>ef` | Toggle NvimTree and focus current file                    |
+| `<leader>ec` | Collapse NvimTree folders                                 |
+| `<leader>er` | Refresh NvimTree                                          |
+| `a`          | Create a file (`e.g.` `dir/file.txt`, `dir/`, `file.txt`) |
+| `d`          | Delete a file                                             |
+| `r`          | Rename a file                                             |
 
 ➡ **Plugin:** [`nvim-tree/nvim-tree.lua`](https://github.com/nvim-tree/nvim-tree.lua)
 
