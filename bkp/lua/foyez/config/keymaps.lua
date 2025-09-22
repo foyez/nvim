@@ -61,12 +61,12 @@ keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file
 -- 🔍 Telescope
 -- ========================================================================
 
--- local builtin = require("telescope.builtin")
+local builtin = require("telescope.builtin")
 
--- keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
--- keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent files" })
--- keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Search in files" })
--- keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Search word under cursor" })
+keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent files" })
+keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Search in files" })
+keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Search word under cursor" })
 
 
 -- ========================================================================
