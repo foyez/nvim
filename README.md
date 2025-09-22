@@ -2,6 +2,9 @@
 
 ## NeoVim Installation
 
+<details>
+<summary>View contents</summary>
+
 - To install Rust (including Cargo)
 
 ```sh
@@ -61,6 +64,8 @@ git clone git@github.com:foyez/nvim.git
 nvim
 ```
 
+</details>
+
 ## Fonts
 
 - NerdFonts intallation link: https://www.nerdfonts.com/font-downloads
@@ -68,8 +73,11 @@ nvim
 
 ## Wezterm Terminal Emulator
 
+<details>
+<summary>View contents</summary>
+
 - Wezterm Terminal downloading link: https://wezterm.org/install/macos.html
-- `$HOME/.wezterm.lua`
+- `$HOME/.wezterm.lua` or `$HOME/.config/wezterm/wezterm.lua`
 
 ```lua
 local wezterm = require("wezterm")
@@ -86,15 +94,22 @@ return {
     },
     -- Add more fallback fonts here if needed
   },
-  font_size = 13.0,
-
+  font_size = 15.0,
   color_scheme = "Snazzy",
 
+  audible_bell = "Disabled",
+
+  -- Transparency
+  window_background_opacity = 0.95,
+  text_background_opacity = 1.0,
+
+  -- Tab bar settings
   enable_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
+  use_fancy_tab_bar = false,
 
+  -- Window appearance
   window_decorations = "RESIZE",
-
   window_padding = {
     left = 2,
     right = 2,
@@ -102,8 +117,7 @@ return {
     bottom = 2,
   },
 
-  use_fancy_tab_bar = false,
-
+  -- Window close confirmation
   window_close_confirmation = "NeverPrompt",
 }
 ```
@@ -112,6 +126,8 @@ return {
   - Download the clangbinary: https://github.com/foyez/cpp/tree/main/lsp/clangd-llvm/bin
   - Put it in: `~/clangd-llvm/bin/`
   - Add the path in `~/.zshrc`: `export PATH="$HOME/clangd-llvm/bin:$PATH"`
+
+</details>
 
 ## NeoVim keymaps
 
