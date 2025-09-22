@@ -9,9 +9,22 @@ return {
   },
   settings = {
     gopls = {
-      analyses = { unusedparams = true },
-      staticcheck = true,
       gofumpt = true,
+      usePlaceholders = true,
+      staticcheck = true,
+      analyses = {
+        unusedparams = true,
+        nilness = true,
+        shadow = true,
+      },
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
     },
   },
 }

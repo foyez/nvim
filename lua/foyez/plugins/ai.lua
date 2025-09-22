@@ -5,7 +5,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
-			"echasnovski/mini.icons",        -- or whatever icons plugin you prefer
+			"nvim-tree/nvim-web-devicons",        -- or whatever icons plugin you prefer
 			"MeanderingProgrammer/render-markdown.nvim",  -- for pretty markdown
 			"zbirenbaum/copilot.lua",
 			-- optional: dressing.nvim or snacks.nvim if you want better input UIs

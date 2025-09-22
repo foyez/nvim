@@ -1,23 +1,51 @@
 return {
-	-- 🔍 Telescope: Fuzzy finder for files, text, buffers, etc.
+  -- 🔍 Telescope: Fuzzy finder for files, text, buffers, etc.
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
+    tag = "0.1.8", -- pinned stable release (good choice)
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim", -- required utility library
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- super fast fuzzy search
+      "nvim-tree/nvim-web-devicons", -- pretty file icons
     },
     config = function()
       require("telescope").setup({
         defaults = {
-          path_display = { "smart" },
+          path_display = { "smart" }, -- shorten paths smartly
+          sorting_strategy = "ascending", -- results from top down (more natural than bottom-up)
+          layout_config = { preview_width = 0.6 }, -- preview takes 60% of window
+          prompt_prefix = "  ",         -- pretty search icon
+          selection_caret = " ",        -- caret for selection
+          winblend = 5,                  -- subtle transparency (if terminal supports it)
         },
+        pickers = {
+          find_files = {
+            hidden = true, -- include dotfiles
+          },
+          live_grep = {
+            additional_args = function(_)
+              return { "--hidden", "--glob", "!.git/*"  } -- include hidden files in grep
+            end,
+          },
+        },
+
       })
+
+      -- enable fzf-native extension
+      require("telescope").load_extension("fzf")
+
+      -- keymaps
+      local builtin = require("telescope.builtin")
+
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+      vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent files" })
+      vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Search in files" })
+      vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Search word under cursor" })
+
     end,
   },
 
-	-- 🌲 Treesitter: Modern syntax highlighting and parsing
+  -- 🌲 Treesitter: Modern syntax highlighting and parsing
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
@@ -79,7 +107,7 @@ return {
     end,
   },
 
-	-- 💾 Session management (save/restore window layout, buffers, etc.)
+  -- 💾 Session management (save/restore window layout, buffers, etc.)
   {
     "rmagatti/auto-session",
     config = function()

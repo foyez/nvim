@@ -1,26 +1,5 @@
 return {
-	-- 🔌 Lua utility functions used by many plugins
-  { "nvim-lua/plenary.nvim" },
-
-	-- 🎨 Colorscheme
-  {
-		"folke/tokyonight.nvim",
-		lazy = false, -- load immediately
-		priority = 1000, -- load before other plugins
-        config = function()
-            require("tokyonight").setup({
-                transparent = true,
-                dim_inactive = true,
-                terminal_colors = true,
-                on_highlights = function(hl, c)
-                    hl.VertSplit = { fg = c.orange, bg = "NONE" }
-                    hl.WinSeparator = { fg = c.orange, bg = "NONE" }
-                end,
-            })
-        end,
-	},
-
-	-- 🚀 Startup dashboard with ASCII art and shortcuts
+  -- 🚀 Startup dashboard with ASCII art and shortcuts
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
@@ -61,7 +40,7 @@ return {
     end,
   },
 
-	-- 🧱 Lualine: Status line
+  -- 🧱 Lualine: Status line
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -84,9 +63,10 @@ return {
 						},
 					},
           lualine_x = {
+            -- remove "filetype"
             "encoding",   -- keeps encoding like utf-8
             "fileformat", -- keeps fileformat like unix/dos
-          },       -- remove "filetype"
+          },
 				},
 			})
     end,

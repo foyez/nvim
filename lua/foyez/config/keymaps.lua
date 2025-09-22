@@ -33,9 +33,6 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Equalize split sizes" })
 keymap.set("n", "<leader>sx", ":close<CR>", { desc = "Close current split" })
 
--- Toggle maximize (plugin handled in lazy spec for vim-maximizer)
--- keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", { desc = "Maximize split" })
-
 
 -- ========================================================================
 -- 🗂 Tabs
@@ -55,18 +52,6 @@ keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file e
 keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Find file in explorer" })
 keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
 keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
-
-
--- ========================================================================
--- 🔍 Telescope
--- ========================================================================
-
--- local builtin = require("telescope.builtin")
-
--- keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
--- keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent files" })
--- keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Search in files" })
--- keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Search word under cursor" })
 
 
 -- ========================================================================
