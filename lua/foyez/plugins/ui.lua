@@ -45,11 +45,11 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local custom_theme = require("lualine.themes.everforest")
+      local theme = require("lualine.themes.everforest")
 
       require("lualine").setup({
 				options = {
-					theme = custom_theme,
+					theme = theme, -- auto
 					globalstatus = true, -- single statusline accross all windows
 				},
 				sections = {
@@ -77,23 +77,29 @@ return {
     "b0o/incline.nvim",
     event = "BufReadPre",        -- lazy load on buffer read
     priority = 1200,             -- load early if needed
-    dependencies = {
-      "craftzdog/solarized-osaka.nvim",
-      "nvim-tree/nvim-web-devicons", -- icons for files
-    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      -- Load color palette
-      local colors = require("solarized-osaka.colors").setup()
+      local devicons = require("nvim-web-devicons")
+      local helpers = require("incline.helpers")
 
       require("incline").setup({
         highlight = {
           groups = {
-            InclineNormal = { guifg = colors.base04, guibg = colors.magenta500 },
-            InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
+            -- Active buffer
+            InclineNormal = {
+              guibg = "#44406e",
+              gui = "bold",
+            },
+            -- Inactive buffer
+            InclineNormalNC = { 
+              guifg = "#7aa2f7",
+              guibg = "#44406e",
+            },
           },
         },
         window = {
-          margin = { vertical = 0, horizontal = 1 }, -- remove extra vertical space
+          padding = 0,
+          margin = { vertical = 0, horizontal = 0 }, -- remove extra vertical space
         },
         hide = {
           cursorline = true, -- hide when cursorline is active
@@ -101,16 +107,15 @@ return {
         render = function(props)
           -- get relative filename (tail)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+          local icon, color = devicons.get_icon_color(filename)
+          local modified = vim.bo[props.buf].modified
 
-          -- prepend [+] if buffer is modified
-          if vim.bo[props.buf].modified then
-            filename = "[+] " .. filename
-          end
-
-          -- get icon + color
-          local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-
-          return { { icon, guifg = color }, { " " }, { filename } }
+          return {
+            { ' ', icon, ' ', guibg = color, guifg = helpers.contrast_color(color) },
+            ' ',
+            { modified and { '[+]', filename } or filename },
+            ' ',
+          }
         end,
       })
     end,
