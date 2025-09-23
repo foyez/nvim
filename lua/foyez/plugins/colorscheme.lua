@@ -26,7 +26,7 @@ return {
 	-- 	priority = 1000, -- load before other plugins
   --   config = function()
   --     require("catppuccin").setup({
-  --       flavour = "latte", -- latte, frappe, macchiato, mocha
+  --       flavour = "mocha", -- latte, frappe, macchiato, mocha
   --       background = {
   --           light = "latte",
   --           dark = "mocha",
@@ -60,7 +60,7 @@ return {
   --         }
   --       end,
   --     })
-  --     vim.o.background = "light"
+  --     -- vim.o.background = "light"
   --     vim.cmd.colorscheme("kanagawa")
   --   end,
   -- },
