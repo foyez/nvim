@@ -14,13 +14,13 @@ return {
           path_display = { "smart" }, -- shorten paths smartly
           sorting_strategy = "ascending", -- results from top down (more natural than bottom-up)
           layout_config = { preview_width = 0.6 }, -- preview takes 60% of window
-          prompt_prefix = "  ",         -- pretty search icon
-          selection_caret = " ",        -- caret for selection
+          prompt_prefix = "🔍 ",         -- pretty search icon
+          -- selection_caret = " ",        -- caret for selection
           winblend = 5,                  -- subtle transparency (if terminal supports it)
         },
         pickers = {
           find_files = {
-            hidden = true, -- include dotfiles
+            -- hidden = true, -- include dotfiles
           },
           live_grep = {
             additional_args = function(_)

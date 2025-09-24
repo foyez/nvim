@@ -61,9 +61,8 @@ return {
 	-- 🪟 Toggle maximize current split
 	{
 		"szw/vim-maximizer",
-    cmd = { "MaximizerToggle" },
 		keys = {
-			{ '<leader>sm', ':MaximizerToggle<CR>', desc = 'Toggle maximize split' },
+			{ '<leader>sm', '<cmd>MaximizerToggle<CR>', desc = 'Toggle maximize split' },
 		},
 	},
 

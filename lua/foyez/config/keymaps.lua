@@ -33,6 +33,12 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Equalize split sizes" })
 keymap.set("n", "<leader>sx", ":close<CR>", { desc = "Close current split" })
 
+-- Move splits with Alt + hjkl
+keymap.set("n", "<M-h>", "<C-w>H", { desc = "Move split far left" })
+keymap.set("n", "<M-l>", "<C-w>L", { desc = "Move split far right" })
+keymap.set("n", "<M-k>", "<C-w>K", { desc = "Move split to top" })
+keymap.set("n", "<M-j>", "<C-w>J", { desc = "Move split to bottom" })
+
 
 -- ========================================================================
 -- 🗂 Tabs

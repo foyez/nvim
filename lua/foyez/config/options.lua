@@ -12,6 +12,8 @@ opt.scrolloff = 10 -- Keep 10 lines visible above/below cursor
 opt.virtualedit = "onemore"
 opt.wrap = false
 opt.mouse = "" -- Disable mouse support
+opt.winminheight = 0
+opt.winminwidth = 0
 
 -- Indentation
 opt.tabstop = 2
