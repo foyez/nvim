@@ -44,4 +44,16 @@ require("lazy").setup({
   },
   checker = { enabled = true, notify = false }, -- auto-check plugin updates
   install = { missing = true, colorscheme = { "tokyonight" } },
+  performance = {
+    rtp = {
+      -- disable some rtp plugins, add more to your liking
+      disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "zipPlugin",
+      },
+    },
+  },
 })
