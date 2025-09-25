@@ -16,6 +16,9 @@ return {
         end,
       })
       vim.cmd.colorscheme("tokyonight")
+
+      -- custom highlights
+      vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#ff5555", bold = true })
     end,
   },
 
