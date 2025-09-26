@@ -1,5 +1,6 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+local inlay = require("foyez.utils.inlay_hints")
 
 -- ========================================================================
 -- 🏠 General
@@ -13,6 +14,9 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Toggle wrap line
 keymap.set("n", "<leader>w", ":set wrap!<CR>", { noremap = true, silent = true })
+
+-- Toggle inlay hints
+keymap.set("n", "<leader>h", inlay.toggle, { desc = "Toggle Inlay Hints" })
 
 -- ========================================================================
 -- 🔢 Numbers
