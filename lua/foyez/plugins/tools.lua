@@ -167,4 +167,19 @@ return {
       end)
     end,
   },
+  
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      require("toggleterm").setup({
+        size = 12,                  -- fixed terminal height
+        open_mapping = [[<C-`>]],   -- Ctrl+` to toggle
+        direction = "horizontal",   -- bottom split
+        start_in_insert = false,  -- do NOT automatically enter insert mode
+        close_on_exit = true,       -- auto-close when process exits
+        auto_scroll = true,
+      })
+    end,
+  },
 }

@@ -51,6 +51,8 @@ return {
 				options = {
 					theme = theme, -- auto
 					globalstatus = true, -- single statusline accross all windows
+          -- disable lualine for certain filetypes
+          disabled_filetypes = { "toggleterm", "NvimTree", "packer" },
 				},
 				sections = {
 					lualine_a = { "mode" },
