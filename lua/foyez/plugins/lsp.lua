@@ -45,6 +45,7 @@ return {
       vim.lsp.enable("gopls")
       vim.lsp.enable("pyright")
       vim.lsp.enable("ts_ls")
+      vim.lsp.enable("rust-analyzer")
     end,
   },
 }

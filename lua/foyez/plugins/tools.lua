@@ -132,10 +132,15 @@ return {
     opts_extend = { "ensure_installed" },
     opts = {
       ensure_installed = {
+        "clangd",
         "gofumpt",
         "goimports",
+        "gopls",
         "prettier",
-        "prettierd"
+        "prettierd",
+        "pyright",
+				"rust-analyzer",
+        "typescript-language-server",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}

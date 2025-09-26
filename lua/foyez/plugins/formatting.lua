@@ -10,17 +10,6 @@ return {
       "L3MON4D3/LuaSnip",      -- snippet engine
       "saadparwaiz1/cmp_luasnip", -- snippets in cmp
     },
-    formatters_by_ft = {
-      typescript = { { "prettierd", "prettier", stop_after_first = true } },
-      javascriptreact = { { "prettierd", "prettier", stop_after_first = true } },
-      typescriptreact = { { "prettierd", "prettier", stop_after_first = true } },
-      go = { "goimports", "gofmt" },
-    },
-    -- format_on_save = {
-    --   -- I recommend these options. See :help conform.format for details.
-    --   lsp_format = "fallback",
-    --   timeout_ms = 500,
-    -- },
     config = function()
       local cmp = require("cmp")
 
@@ -57,13 +46,22 @@ return {
         }),
       })
 
-      -- Go completions
-      cmp.setup.filetype("go", {
+      -- auto completions
+      local languages = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "go",
+        "rust",
+      }
+      cmp.setup.filetype(languages, {
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },  -- language server
-          { name = "luasnip" },   -- snippets
-          { name = "buffer" },    -- buffer words
-          { name = "path" },      -- file paths
+          { name = "nvim_lsp" }, -- language server
+          { name = "luasnip" }, -- snippets
+        }, {
+          { name = "buffer" }, -- buffer words
+          { name = "path" }, -- file paths
         }),
       })
     end,
