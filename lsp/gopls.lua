@@ -9,7 +9,7 @@ return {
   },
   settings = {
     gopls = {
-      gofumpt = true,
+      gofumpt = true, -- formatting style
       usePlaceholders = true,
       staticcheck = true,
       analyses = {
