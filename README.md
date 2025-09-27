@@ -363,7 +363,9 @@ These aren't from plugins but are part of custom mappings:
 * `yw` / `yW` → yank word / WORD
 * `p` / `P` → paste after / before
 * `dd` / `5dd` → delete line(s)
-* `cw` / `cW` → change word / WORD
+* `cw` / `cW` → change from cursor to end of the word / WORD
+* `cb` / `cB` → change from cursor to beginning of the word / WORD
+* `caw` / `caW`  → change entire word / WORD
 * `cc` → change line
 
 👉 **Pro tip:** `y3w` → yank 3 words, `d5W` → delete 5 WORDs, `c2e` → change until end of second word, `v4e` → visually select up to the end of the fourth word
