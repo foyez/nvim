@@ -76,10 +76,17 @@ return {
 
       conform.setup({
         formatters_by_ft = {
-          typescript = { { "prettierd", "prettier", stop_after_first = true } },
-          javascriptreact = { { "prettierd", "prettier", stop_after_first = true } },
-          typescriptreact = { { "prettierd", "prettier", stop_after_first = true } },
+          c = { "clang-format" },
           go = { "goimports", "gofmt" },
+          javascript = { { "prettierd", "prettier", stop_after_first = true } },
+          javascriptreact = { { "prettierd", "prettier", stop_after_first = true } },
+          typescript = { { "prettierd", "prettier", stop_after_first = true } },
+          typescriptreact = { { "prettierd", "prettier", stop_after_first = true } },
+        },
+        formatters = {
+          ["clang-format"] = {
+            prepend_args = { "-style=file", "-fallback-style=LLVM" },
+          },
         },
         -- format_on_save = {
         --   timeout_ms = 500,
@@ -91,7 +98,7 @@ return {
       local save_format_group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = { "*.go", "*.ts", "*.js", "*.tsx", "*.jsx" },
+        pattern = { "*.c", "*.cpp", "*.go", "*.ts", "*.js", "*.tsx", "*.jsx" },
         group = save_format_group,
         callback = function(args)
           conform.format({
