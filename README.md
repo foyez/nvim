@@ -460,3 +460,14 @@ These aren't from plugins but are part of custom mappings:
 * `:noh` → clear search highlights
 
 ---
+
+## Resources
+
+- [ThePrimeagen NVIM](https://github.com/ThePrimeagen/init.lua)
+- [devaslife NVIM](https://www.youtube.com/watch?v=fFHlfbKVi30)
+- [TJ DeVries core NVIM contributor](https://www.youtube.com/watch?v=m8C0Cq9Uv9o)
+- [NvChad NVIM](https://www.youtube.com/watch?v=Mtgo-nP_r8Y)
+- [NVIM setup with detail explanation](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn)
+- [NVIM setup in short vidoe](https://www.youtube.com/watch?v=N93cTbtLCIM)
+- [In depth nvim setup](https://www.youtube.com/watch?v=6pAG3BHurdM)
+- [Andrew Courter NVIM](https://github.com/exosyphon/nvim)
