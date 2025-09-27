@@ -123,6 +123,7 @@ return {
       })
     end,
   },
+  
   -- 🛠️ Mason (manage LSP servers, formatters, linters)
   {
     "mason-org/mason.nvim",
@@ -168,6 +169,7 @@ return {
     end,
   },
   
+  -- 🖥️ ToggleTerm: Integrated terminal toggle
   {
     "akinsho/toggleterm.nvim",
     version = "*",
@@ -181,5 +183,14 @@ return {
         auto_scroll = true,
       })
     end,
+  },
+
+  -- ♻️ Undotree: Visual undo history tree
+  {
+    "mbbill/undotree",
+
+    config = function() 
+      vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+    end
   },
 }
