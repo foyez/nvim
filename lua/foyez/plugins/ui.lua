@@ -112,8 +112,13 @@ return {
           local icon, color = devicons.get_icon_color(filename)
           local modified = vim.bo[props.buf].modified
 
+          -- If no valid color, fallback to a default
+          if not color or color == "NONE" then
+            color = "#44406e"
+          end
+
           return {
-            { ' ', icon, ' ', guibg = color, guifg = helpers.contrast_color(color) },
+            { ' ', icon or "", ' ', guibg = color, guifg = helpers.contrast_color(color) },
             ' ',
             { modified and { '[+]', filename } or filename },
             ' ',

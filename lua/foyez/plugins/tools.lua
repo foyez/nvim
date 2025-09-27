@@ -123,7 +123,7 @@ return {
       })
     end,
   },
-  
+
   -- 🛠️ Mason (manage LSP servers, formatters, linters)
   {
     "mason-org/mason.nvim",
@@ -191,6 +191,31 @@ return {
 
     config = function() 
       vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+    end
+  },
+
+  -- 🐞 Trouble: A pretty list of diagnostics, references, and more
+  {
+    "folke/trouble.nvim",
+    event = "BufReadPre", -- Lazy load on buffer read
+    config = function()
+      require("trouble").setup({
+        icons = false,  -- Disable icons (optional)
+        use_diagnostic_signs = true,  -- Show diagnostic signs
+      })
+
+      -- Key mappings for Trouble
+      vim.keymap.set("n", "<leader>tt", function()
+        require("trouble").toggle()
+      end)
+
+      vim.keymap.set("n", "[t", function()
+        require("trouble").next({ skip_groups = true, jump = true })
+      end)
+
+      vim.keymap.set("n", "]t", function()
+        require("trouble").previous({ skip_groups = true, jump = true })
+      end)
     end
   },
 }
