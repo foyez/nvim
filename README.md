@@ -463,7 +463,7 @@ These aren't from plugins but are part of custom mappings:
 
 ## Resources
 
-- [ThePrimeagen NVIM](https://github.com/ThePrimeagen/init.lua)
+- ThePrimeagen NVIM: [github](https://github.com/ThePrimeagen/init.lua), [playlist](https://www.youtube.com/playlist?list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R)
 - [devaslife NVIM](https://www.youtube.com/watch?v=fFHlfbKVi30)
 - [TJ DeVries core NVIM contributor](https://www.youtube.com/watch?v=m8C0Cq9Uv9o)
 - [NvChad NVIM](https://www.youtube.com/watch?v=Mtgo-nP_r8Y)
