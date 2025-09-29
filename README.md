@@ -368,7 +368,8 @@ These aren't from plugins but are part of custom mappings:
 * `dd` / `5dd` → delete line(s)
 * `cw` / `cW` → change from cursor to end of the word / WORD
 * `cb` / `cB` → change from cursor to beginning of the word / WORD
-* `caw` / `caW`  → change entire word / WORD
+* `caw` / `caW` / `daw` / `daW`  → change/remove the word/WORD under the cursor and its surrounding space
+* `ciw` / `ciW` / `diw` / `diW`  → change/remove just the word/WORD under the cursor
 * `cc` → change line
 
 👉 **Pro tip:** `y3w` → yank 3 words, `d5W` → delete 5 WORDs, `c2e` → change until end of second word, `v4e` → visually select up to the end of the fourth word
