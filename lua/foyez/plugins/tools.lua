@@ -13,7 +13,23 @@ return {
         defaults = {
           path_display = { "smart" }, -- shorten paths smartly
           sorting_strategy = "ascending", -- results from top down (more natural than bottom-up)
-          layout_config = { preview_width = 0.6 }, -- preview takes 60% of window
+          layout_config = {
+            horizontal = {
+              preview_width = 0.6, -- preview takes 60% of window
+            },
+            vertical = {
+              preview_height = 0.8,
+            },
+            center = {
+              width = 0.5,        
+              height = 0.4,       
+              preview_cutoff = 1,
+            },
+            cursor = {
+              width = 0.5,        
+              height = 0.2,       
+            },
+          },
           prompt_prefix = "🔍 ",         -- pretty search icon
           -- selection_caret = " ",        -- caret for selection
           winblend = 5,                  -- subtle transparency (if terminal supports it)
