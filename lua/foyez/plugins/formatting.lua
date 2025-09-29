@@ -98,7 +98,11 @@ return {
       local save_format_group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = { "*.c", "*.cpp", "*.go", "*.ts", "*.js", "*.tsx", "*.jsx" },
+        pattern = {
+          "*.c", "*.cpp", "*.h", "*.hpp", -- c/c++
+          "*.go", -- go
+          "*.ts", "*.js", "*.tsx", "*.jsx" -- js/ts
+        },
         group = save_format_group,
         callback = function(args)
           conform.format({
