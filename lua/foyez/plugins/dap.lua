@@ -6,15 +6,13 @@
 -- <leader>dn : Step Over (next)
 -- <leader>di : Step Into
 -- <leader>do : Step Out
+-- <leader>dv : Eval under cursor
 -- <leader>dq : Terminate
 -- <leader>b  : Toggle Breakpoint
 -- <leader>B  : Conditional Breakpoint
--- <leader>dr : Toggle REPL UI
--- <leader>ds : Toggle Stacks UI
--- <leader>dw : Toggle Watches UI
--- <leader>db : Toggle Breakpoints UI
--- <leader>dS : Toggle Scopes UI
--- <leader>dc : Toggle Console UI
+-- <leader>dr : Toggle right DAP layout
+-- <leader>db : Toggle bottom DAP layout
+-- <leader>du : Toggle all DAP UI
 
 return {
   {
@@ -36,6 +34,7 @@ return {
       vim.keymap.set("n", "<leader>B", function()
         dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
       end, vim.tbl_extend("force", opts, { desc = "Debug: Conditional Breakpoint" }))
+      vim.keymap.set("n", "<leader>dv", require("dapui").eval, vim.tbl_extend("force", opts, { desc = "Debug: Eval under cursor" }))
       vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "DAP: Terminate Session" })
     
       -- ===============================
@@ -47,6 +46,7 @@ return {
         { lhs = "o", fn = dap.step_out,   desc = "DAP: Step Out" },
         { lhs = "c", fn = dap.continue,   desc = "DAP: Continue" },
         { lhs = "b", fn = dap.toggle_breakpoint, desc = "DAP: Toggle Breakpoint" },
+        { lhs = "V", fn = require("dapui").eval, desc = "DAP: Eval under cursor" },
       }
 
       local saved = {}
@@ -54,13 +54,14 @@ return {
       local function enable_debug_single_keys()
         for _, k in ipairs(single_keys) do
           saved[k.lhs] = vim.fn.maparg(k.lhs, "n") or ""
-          vim.keymap.set("n", k.lhs, k.fn, { noremap = true, silent = true, desc = k.desc })
+          vim.keymap.set({"n", "v"}, k.lhs, k.fn, { noremap = true, silent = true, desc = k.desc })
         end
       end
 
       local function disable_debug_single_keys()
         for _, k in ipairs(single_keys) do
           pcall(vim.keymap.del, "n", k.lhs)
+          pcall(vim.keymap.del, "v", k.lhs)
           local prev = saved[k.lhs]
           if prev ~= nil and prev ~= "" then
             -- restore previous mapping
@@ -70,15 +71,9 @@ return {
         end
       end
 
-      dap.listeners.after.event_initialized["single_keys"] = function()
-        enable_debug_single_keys()
-      end
-      dap.listeners.before.event_terminated["single_keys"] = function()
-        disable_debug_single_keys()
-      end
-      dap.listeners.before.event_exited["single_keys"] = function()
-        disable_debug_single_keys()
-      end
+      dap.listeners.after.event_initialized["single_keys"] = enable_debug_single_keys
+      dap.listeners.before.event_terminated["single_keys"] = disable_debug_single_keys
+      dap.listeners.before.event_exited["single_keys"] = disable_debug_single_keys
     end,
   },
 
@@ -88,71 +83,44 @@ return {
     config = function()
       local dap, dapui = require("dap"), require("dapui")
 
-      -- Layout helper
-      local function layout(name)
-        return {
-          elements = { { id = name } },
-          enter = true,
-          size = 40,
-          position = "right",
-        }
-      end
-
-      -- Map of dap-ui panels
-      local name_to_layout = {
-        repl = { layout = layout("repl") },
-        stacks = { layout = layout("stacks") },
-        scopes = { layout = layout("scopes") },
-        console = { layout = layout("console") },
-        watches = { layout = layout("watches") },
-        breakpoints = { layout = layout("breakpoints") },
-      }
-
-      local layouts = {}
-      for name, config in pairs(name_to_layout) do
-        table.insert(layouts, config.layout)
-        config.index = #layouts
-      end
-
-      -- Toggle function
-      local function toggle_debug_ui(name)
-        dapui.close()
-        local layout_config = name_to_layout[name]
-        if not layout_config then
-          error("Unknown UI name: " .. name)
-        end
-        local uis = vim.api.nvim_list_uis()[1]
-        if uis then
-          layout_config.size = uis.width
-        end
-        pcall(dapui.toggle, layout_config.index)
-      end
-
-      -- UI Keymaps
-      vim.keymap.set("n", "<leader>dr", function() toggle_debug_ui("repl") end, { desc = "Debug: REPL" })
-      vim.keymap.set("n", "<leader>ds", function() toggle_debug_ui("stacks") end, { desc = "Debug: Stacks" })
-      vim.keymap.set("n", "<leader>dw", function() toggle_debug_ui("watches") end, { desc = "Debug: Watches" })
-      vim.keymap.set("n", "<leader>db", function() toggle_debug_ui("breakpoints") end, { desc = "Debug: Breakpoints" })
-      vim.keymap.set("n", "<leader>dS", function() toggle_debug_ui("scopes") end, { desc = "Debug: Scopes" })
-      vim.keymap.set("n", "<leader>dc", function() toggle_debug_ui("console") end, { desc = "Debug: Console" })
-
-      -- Autocmds
-      local group = vim.api.nvim_create_augroup("DapGroup", { clear = true })
-
-      vim.api.nvim_create_autocmd("BufEnter", {
-        group = group,
-        pattern = "*dap-repl*",
-        callback = function()
-          vim.wo.wrap = true
-        end,
+      dapui.setup({
+        layouts = {
+          {
+            elements = {
+              { id = "scopes", size = 0.50 },
+              { id = "watches", size = 0.15 },
+              { id = "stacks", size = 0.20 },
+              { id = "breakpoints", size = 0.15 },
+            },
+            position = "right",
+            size = 40,
+          },
+          {
+            elements = {
+              { id = "repl", size = 0.50 },
+              { id = "console", size = 0.50 },
+            },
+            position = "bottom",
+            size = 10,
+          },
+        },
       })
 
-      -- Setup dap-ui
-      dapui.setup({ layouts = layouts, enter = true })
+      -- Open/close dapui automatically with dap
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open({ layout = 1, reset = true })
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
 
-      -- Auto-close UI when debugging stops
-      dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
-      dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+      -- Keymaps
+      vim.keymap.set("n", "<leader>du", function() dapui.toggle() end, { desc = "Toggle DAP UI" })
+      vim.keymap.set("n", "<leader>dr", function() dapui.toggle(1) end, { desc = "Toggle right DAP layout" })
+      vim.keymap.set("n", "<leader>db", function() dapui.toggle(2) end, { desc = "Toggle bottom DAP layout" })
     end,
   },
 
@@ -169,7 +137,7 @@ return {
         ensure_installed = {
           "delve",     -- Go
           "codelldb",  -- C / C++
-          "debugpy",   -- Python
+          "python",   -- Python
           "js",        -- TypeScript / JavaScript
         },
         automatic_installation = true,
@@ -180,34 +148,52 @@ return {
           delve = function(config)
             config.configurations = {
               {
-                type = "delve",
-                name = "Debug file",
-                request = "launch",
-                program = "${file}",
+                type = 'delve',
+                name = 'Delve: Debug',
+                request = 'launch',
+                program = '${workspaceFolder}',
               },
               {
-                type = "delve",
-                name = "Debug with args",
-                request = "launch",
-                program = "${file}",
+                type = 'delve',
+                name = 'Delve: Debug (Arguments)',
+                request = 'launch',
+                program = '${workspaceFolder}',
                 args = function()
-                  local args_str = vim.fn.input("Args: ")
-                  return vim.split(args_str, " ")
+                  return vim.split(vim.fn.input('Args: '), ' ')
                 end,
+              },
+              {
+                type = 'delve',
+                name = 'Delve: Debug test', -- configuration for debugging test files
+                request = 'launch',
+                mode = 'test',
+                program = '${file}',
+              },
+              -- works with go.mod packages and sub packages
+              {
+                type = 'delve',
+                name = 'Delve: Debug test (go.mod)',
+                request = 'launch',
+                mode = 'test',
+                program = './${relativeFileDirname}',
               },
             }
             mason_dap.default_setup(config)
           end,
 
           -- Python (debugpy)
-          debugpy = function(config)
+          python = function(config)
             config.configurations = {
               {
-                type = "python",
-                request = "launch",
-                name = "Launch file",
-                program = "${file}",
-                console = "integratedTerminal",
+                type = 'python',
+                request = 'launch',
+                name = 'Python: Launch file',
+                program = '${file}', -- This configuration will launch the current file if used.
+                -- venv on Windows uses Scripts instead of bin
+                pythonPath = venv_path
+                    and ((vim.fn.has('win32') == 1 and venv_path .. '/Scripts/python') or venv_path .. '/bin/python')
+                  or nil,
+                console = 'integratedTerminal',
               },
             }
             mason_dap.default_setup(config)
@@ -217,14 +203,30 @@ return {
           codelldb = function(config)
             config.configurations = {
               {
-                name = "Launch file",
-                type = "codelldb",
-                request = "launch",
+                name = 'LLDB: Launch',
+                type = 'codelldb',
+                request = 'launch',
                 program = function()
-                  return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
                 end,
-                cwd = "${workspaceFolder}",
+                cwd = '${workspaceFolder}',
                 stopOnEntry = false,
+                args = {},
+                console = 'integratedTerminal',
+              },
+              {
+                name = 'LLDB: Launch (args)',
+                type = 'codelldb',
+                request = 'launch',
+                program = function()
+                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+                args = function()
+                  return vim.split(vim.fn.input('Args: '), ' +', { trimempty = true })
+                end,
+                console = 'integratedTerminal',
               },
             }
             mason_dap.default_setup(config)
