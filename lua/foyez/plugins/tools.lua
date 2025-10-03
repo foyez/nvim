@@ -304,4 +304,15 @@ return {
 			end)
 		end,
 	},
+
+	-- ✨ Leap: Super-fast bidirectional navigation with 2-character search (d/y/c support)
+	{
+		"ggandor/leap.nvim",
+		dependencies = { "tpope/vim-repeat" }, -- optional, for repeating motions with '.'
+		config = function()
+			local leap = require("leap")
+			leap.add_default_mappings()
+			leap.opts.case_sensitive = true
+		end,
+	},
 }
