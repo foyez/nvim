@@ -78,20 +78,21 @@ return {
         formatters_by_ft = {
           c = { "clang-format" },
           go = { "goimports", "gofmt" },
-          javascript = { { "prettierd", "prettier", stop_after_first = true } },
-          javascriptreact = { { "prettierd", "prettier", stop_after_first = true } },
-          typescript = { { "prettierd", "prettier", stop_after_first = true } },
-          typescriptreact = { { "prettierd", "prettier", stop_after_first = true } },
+          javascript = { "prettierd", "prettier" },
+          javascriptreact = { "prettierd", "prettier" },
+          typescript = { "prettierd", "prettier" },
+          typescriptreact = { "prettierd", "prettier" },
         },
         formatters = {
           ["clang-format"] = {
             prepend_args = { "-style=file", "-fallback-style=LLVM" },
           },
         },
-        -- format_on_save = {
-        --   timeout_ms = 500,
-        --   lsp_format = "fallback",
-        -- },
+        format_on_save = {
+          stop_after_first = true,
+          -- timeout_ms = 500,
+          -- lsp_format = "fallback",
+        },
       })
 
       -- Define a function to format when pressing <Esc>
