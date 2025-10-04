@@ -127,4 +127,52 @@ return {
       })
     end,
   },
+
+  -- 📁 Nvim-tree: File explorer tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvim-tree").setup({
+        view = { width = 35, relativenumber = true },
+        renderer = {
+          indent_markers = { enable = true },
+          icons = {
+            glyphs = {
+              folder = { arrow_closed = "\u{1F449}", arrow_open = "\u{1F447}" },
+            },
+          },
+        },
+        actions = { open_file = { window_picker = { enable = false } } },
+        git = { ignore = false },
+      })
+    end,
+  },
+
+  -- 🧘‍♂️ Zen Mode: distraction-free editing
+	{
+		"folke/zen-mode.nvim",
+    event = "VeryLazy",
+		cmd = "ZenMode",
+		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+		config = function()
+			require("zen-mode").setup({
+				window = {
+					backdrop = 0.95,  -- shade the background
+					width = 100,      -- width of the zen window
+					options = {
+						number = true,        -- hide line numbers
+						relativenumber = false,-- hide relative numbers
+						signcolumn = "no",     -- hide git signs
+					},
+				},
+				plugins = {
+					gitsigns = { enabled = false },
+					tmux = { enabled = true },
+					kitty = { enabled = false, font = "+2" },
+					wezterm = { enabled = false, font = "+2" },
+				},
+			})
+		end,
+	},
 }
