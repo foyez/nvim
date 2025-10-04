@@ -100,7 +100,7 @@ return {
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = {
-          "*.c", "*.cpp", "*.h", "*.hpp", -- c/c++
+          "*.cpp", "*.hpp", -- c/c++
           "*.go", -- go
           "*.ts", "*.js", "*.tsx", "*.jsx" -- js/ts
         },
