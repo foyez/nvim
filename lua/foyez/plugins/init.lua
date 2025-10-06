@@ -21,9 +21,8 @@ local modules = {
 	-- Git
 	"foyez.plugins.git",
 
-	-- AI / Copilot
+	-- AI (Autocompletion, Copilot, Avante)
 	"foyez.plugins.ai",
-	"foyez.plugins.copilot",
 
 	-- Tools / Utilities
 	"foyez.plugins.tools",
