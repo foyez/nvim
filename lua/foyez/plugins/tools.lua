@@ -5,14 +5,15 @@ return {
     event = "VeryLazy",
     opts = {
       triggers = {}, -- disable automatic popup
+      -- triggers = { "<leader>" }, -- only show on <leader>
     },
     keys = {
       {
         "<leader>?",
         function()
-          require("which-key").show({ global = false })
+          require("which-key").show()
         end,
-        desc = "Buffer Local Keymaps (which-key)",
+        desc = "Show all keymaps",
       },
     },
   },
@@ -102,14 +103,14 @@ return {
     opts = {},
   },
 
-  -- 🪟 Vim-Maximizer: Toggle maximize current split
-	{
-		"szw/vim-maximizer",
-    event = "VeryLazy",
-		keys = {
-			{ '<leader>sm', '<cmd>MaximizerToggle<CR>', desc = 'Toggle maximize split' },
-		},
-	},
+  -- -- 🪟 Vim-Maximizer: Toggle maximize current split
+	-- {
+	-- 	"szw/vim-maximizer",
+  --   event = "VeryLazy",
+	-- 	keys = {
+	-- 		{ '<leader>sm', '<cmd>MaximizerToggle<CR>', desc = 'Toggle maximize split' },
+	-- 	},
+	-- },
 
   -- 🧘‍♂️ Zen Mode: distraction-free editing
 	{
