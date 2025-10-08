@@ -19,6 +19,7 @@ return {
         "typescript-language-server",
         
         -- Formatters
+        "clang-format",
         "gofumpt",
         "goimports",
         "prettier",
