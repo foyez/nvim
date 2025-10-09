@@ -5,7 +5,9 @@ return {
     event = "VeryLazy",
     opts = {
       triggers = {}, -- disable automatic popup
-      -- triggers = { "<leader>" }, -- only show on <leader>
+      -- or selectively:
+      -- triggers = { { "<leader>", mode = "n" } },
+      plugins = {},
     },
     keys = {
       {

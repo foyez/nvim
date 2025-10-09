@@ -31,6 +31,7 @@ return {
           map("gr", vim.lsp.buf.references, "Go to References")
           map("gI", vim.lsp.buf.implementation, "Go to Implementation")
           -- map("K", vim.lsp.buf.hover, "Hover Documentation")
+          map("K", function() vim.lsp.buf.hover({border="rounded"}) end, "Hover Documentation")
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
           map("<leader>rn", vim.lsp.buf.rename, "Rename")
 

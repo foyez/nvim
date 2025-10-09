@@ -10,6 +10,7 @@ return {
     },
     config = function()
       local cmp = require("cmp")
+      local luasnip = require("luasnip")
 
       -- load friendly snippets
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -17,7 +18,7 @@ return {
       cmp.setup({
         snippet = {
           expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
         window = {

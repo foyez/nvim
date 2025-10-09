@@ -6,8 +6,11 @@ local inlay = require("foyez.utils.inlay_hints")
 -- 🏠 General
 -- ========================================================================
 
--- Delete single character without copying into register
-keymap.set("n", "x", '"_x', { desc = "Delete character (no yank)" })
+keymap.set({ "n", "v" }, "x", '"_x', { desc = "Delete a character (no yank)" })
+keymap.set("v", "p", '"_dP', { desc = "Paste without overwriting register (visual mode)" })
+-- keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
+-- keymap.set({ "n", "v" }, "<leader>c", '"_c', { desc = "Change without yanking" })
+-- keymap.set({ "n", "v" }, "<leader>x", '"_x', { desc = "Delete character without yanking" })
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
