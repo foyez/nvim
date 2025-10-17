@@ -1,5 +1,6 @@
 return {
 	-- 🤖 GitHub Copilot: AI-powered code completion
+	-- To signin copiloat run command - :Copilot auth
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
