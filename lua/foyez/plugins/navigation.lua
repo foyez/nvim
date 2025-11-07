@@ -162,11 +162,13 @@ return {
 
       -- keymaps
       local builtin = require("telescope.builtin")
+      local map = vim.keymap.set
 
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-      vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent files" })
-      vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Search in files" })
-      vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Search word under cursor" })
+      map("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+      map("n", "<leader>fr", builtin.oldfiles, { desc = "Recent files" })
+      map("n", "<leader>fs", builtin.live_grep, { desc = "Search in files" })
+      map("n", "<leader>fw", builtin.grep_string, { desc = "Search word under cursor" })
+      map("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
 
     end,
   },
