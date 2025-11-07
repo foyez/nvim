@@ -1,6 +1,7 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 local inlay = require("foyez.utils.inlay_hints")
+local tabufline = require("foyez.utils.tabufline")
 
 -- ========================================================================
 -- 🏠 General
@@ -73,3 +74,8 @@ keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file
 
 -- Exit terminal mode with <Esc>
 keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
+-- tabufline
+keymap.set("n", "<TAB>", tabufline.next, { desc = "Next buffer" })
+keymap.set("n", "<S-TAB>", tabufline.prev, { desc = "Prev buffer" })
+keymap.set("n", "<leader>x", tabufline.close_buffer, { desc = "Close buffer" })

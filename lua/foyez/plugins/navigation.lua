@@ -19,68 +19,76 @@ return {
     },
   },
 
-  -- 🎯 Harpoon: Fast file marking and navigation
-  {
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local harpoon = require("harpoon")
+  -- -- 🎯 Harpoon: Fast file marking and navigation
+  -- {
+	-- 	"ThePrimeagen/harpoon",
+	-- 	branch = "harpoon2",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		local harpoon = require("harpoon")
 
-			harpoon:setup()
+	-- 		harpoon:setup()
 
-      -- prepends the current file (adds it to the start)
-			vim.keymap.set("n", "<leader>A", function()
-				harpoon:list():prepend()
-			end)
-      -- adds the current file to the Harpoon list (at the end)
-			vim.keymap.set("n", "<leader>a", function()
-				harpoon:list():add()
-			end)
-      -- opens a popup UI with your current list of Harpoon-marked files
-			vim.keymap.set("n", "<C-e>", function()
-				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end)
+  --     -- prepends the current file (adds it to the start)
+	-- 		vim.keymap.set("n", "<leader>A", function()
+	-- 			harpoon:list():prepend()
+	-- 		end)
+  --     -- adds the current file to the Harpoon list (at the end)
+	-- 		vim.keymap.set("n", "<leader>a", function()
+	-- 			harpoon:list():add()
+	-- 		end)
+  --     -- opens a popup UI with your current list of Harpoon-marked files
+	-- 		vim.keymap.set("n", "<C-e>", function()
+	-- 			harpoon.ui:toggle_quick_menu(harpoon:list())
+	-- 		end)
 
-      -- instantly jump to files 1-4 in your Harpoon list using Alt + key.
-			vim.keymap.set("n", "<M-1>", function()
-				harpoon:list():select(1)
-			end)
-			vim.keymap.set("n", "<M-2>", function()
-				harpoon:list():select(2)
-			end)
-			vim.keymap.set("n", "<M-3>", function()
-				harpoon:list():select(3)
-			end)
-			vim.keymap.set("n", "<M-4>", function()
-				harpoon:list():select(4)
-			end)
-      -- replaces the file at slot 1-4 with your current file
-			vim.keymap.set("n", "<leader><M-1>", function()
-				harpoon:list():replace_at(1)
-			end)
-			vim.keymap.set("n", "<leader><M-2>", function()
-				harpoon:list():replace_at(2)
-			end)
-			vim.keymap.set("n", "<leader><M-3>", function()
-				harpoon:list():replace_at(3)
-			end)
-			vim.keymap.set("n", "<leader><M-4>", function()
-				harpoon:list():replace_at(4)
-			end)
-		end,
-	},
+  --     -- instantly jump to files 1-4 in your Harpoon list using Alt + key.
+	-- 		vim.keymap.set("n", "<M-1>", function()
+	-- 			harpoon:list():select(1)
+	-- 		end)
+	-- 		vim.keymap.set("n", "<M-2>", function()
+	-- 			harpoon:list():select(2)
+	-- 		end)
+	-- 		vim.keymap.set("n", "<M-3>", function()
+	-- 			harpoon:list():select(3)
+	-- 		end)
+	-- 		vim.keymap.set("n", "<M-4>", function()
+	-- 			harpoon:list():select(4)
+	-- 		end)
+  --     -- replaces the file at slot 1-4 with your current file
+	-- 		vim.keymap.set("n", "<leader><M-1>", function()
+	-- 			harpoon:list():replace_at(1)
+	-- 		end)
+	-- 		vim.keymap.set("n", "<leader><M-2>", function()
+	-- 			harpoon:list():replace_at(2)
+	-- 		end)
+	-- 		vim.keymap.set("n", "<leader><M-3>", function()
+	-- 			harpoon:list():replace_at(3)
+	-- 		end)
+	-- 		vim.keymap.set("n", "<leader><M-4>", function()
+	-- 			harpoon:list():replace_at(4)
+	-- 		end)
+	-- 	end,
+	-- },
 
 	-- ✨ Leap: Super-fast bidirectional navigation with 2-character search (d/y/c support)
 	{
-		"ggandor/leap.nvim",
-		dependencies = { "tpope/vim-repeat" }, -- optional, for repeating motions with '.'
-		config = function()
-			local leap = require("leap")
-			leap.add_default_mappings()
-			leap.opts.case_sensitive = true
-		end,
-	},
+    "ggandor/leap.nvim",
+    config = function()
+      local leap = require("leap")
+      leap.setup({
+        highlight_unlabeled = true,
+        safe_labels = { "s", "f", "n", "u", "t" },
+        labels = { "s", "f", "n", "j", "k" },
+        case_sensitive = false,
+      })
+
+      -- New official mappings
+      vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+      vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+      vim.keymap.set({ "n", "x", "o" }, "gs", "<Plug>(leap-cross-window)")
+    end,
+  },
 
 	-- 🔍 Telescope: Fuzzy finder for files, text, buffers, etc.
   {
@@ -93,30 +101,49 @@ return {
     },
     config = function()
       require("telescope").setup({
+        -- defaults = {
+        --   path_display = { "smart" }, -- shorten paths smartly
+        --   sorting_strategy = "ascending", -- results from top down (more natural than bottom-up)
+        --   layout_config = {
+        --     horizontal = {
+        --       preview_width = 0.6, -- preview takes 60% of window
+        --     },
+        --     vertical = {
+        --       preview_height = 0.8,
+        --     },
+        --     center = {
+        --       width = 0.5,        
+        --       height = 0.4,       
+        --       preview_cutoff = 1,
+        --     },
+        --     cursor = {
+        --       width = 0.5,        
+        --       height = 0.2,       
+        --     },
+        --   },
+        --   prompt_prefix = "🔍 ",         -- pretty search icon
+        --   -- selection_caret = " ",        -- caret for selection
+        --   winblend = 5,                  -- subtle transparency (if terminal supports it)
+        -- },
         defaults = {
-          path_display = { "smart" }, -- shorten paths smartly
-          sorting_strategy = "ascending", -- results from top down (more natural than bottom-up)
+          prompt_prefix = "   ",
+          selection_caret = " ",
+          entry_prefix = " ",
+          sorting_strategy = "ascending",
           layout_config = {
             horizontal = {
-              preview_width = 0.6, -- preview takes 60% of window
+              prompt_position = "top",
+              preview_width = 0.55,
             },
-            vertical = {
-              preview_height = 0.8,
-            },
-            center = {
-              width = 0.5,        
-              height = 0.4,       
-              preview_cutoff = 1,
-            },
-            cursor = {
-              width = 0.5,        
-              height = 0.2,       
-            },
+            width = 0.87,
+            height = 0.80,
           },
-          prompt_prefix = "🔍 ",         -- pretty search icon
-          -- selection_caret = " ",        -- caret for selection
-          winblend = 5,                  -- subtle transparency (if terminal supports it)
+          mappings = {
+            n = { ["q"] = require("telescope.actions").close },
+          },
         },
+        extensions_list = { "themes", "terms" },
+        extensions = {},
         pickers = {
           find_files = {
             -- hidden = true, -- include dotfiles

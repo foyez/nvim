@@ -37,6 +37,8 @@ return {
           },
         },
       })
+
+      vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#ff5555", bold = true })
     end,
   },
 
@@ -74,77 +76,120 @@ return {
     end,
   },
 
-  -- 🪟 Incline: Per-window floating winbar
+  -- 📚 Bufferline: Tab-like bufferline similar to NVChad's tabufline
   {
-    "b0o/incline.nvim",
-    event = "BufReadPre",        -- lazy load on buffer read
-    priority = 1200,             -- load early if needed
+    "akinsho/bufferline.nvim",
+    version = "*",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "BufReadPre",
     config = function()
-      local devicons = require("nvim-web-devicons")
-      local helpers = require("incline.helpers")
-
-      require("incline").setup({
-        highlight = {
-          groups = {
-            -- Active buffer
-            InclineNormal = {
-              guibg = "#44406e",
-              gui = "bold",
-            },
-            -- Inactive buffer
-            InclineNormalNC = { 
-              guifg = "#7aa2f7",
-              guibg = "#44406e",
-            },
+      require("bufferline").setup({
+        options = {
+          numbers = "none",
+          diagnostics = "nvim_lsp",
+          always_show_bufferline = true,
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+          separator_style = "none",
+          offsets = {
+            { filetype = "NvimTree", text = "File Explorer", text_align = "left" },
           },
         },
-        window = {
-          padding = 0,
-          margin = { vertical = 0, horizontal = 0 }, -- remove extra vertical space
-        },
-        hide = {
-          cursorline = true, -- hide when cursorline is active
-        },
-        render = function(props)
-          -- get relative filename (tail)
-          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-          local icon, color = devicons.get_icon_color(filename)
-          local modified = vim.bo[props.buf].modified
-
-          -- If no valid color, fallback to a default
-          if not color or color == "NONE" then
-            color = "#44406e"
-          end
-
-          return {
-            { ' ', icon or "", ' ', guibg = color, guifg = helpers.contrast_color(color) },
-            ' ',
-            { modified and { '[+]', filename } or filename },
-            ' ',
-          }
-        end,
       })
     end,
   },
 
+  -- -- 🪟 Incline: Per-window floating winbar
+  -- {
+  --   "b0o/incline.nvim",
+  --   event = "BufReadPre",        -- lazy load on buffer read
+  --   priority = 1200,             -- load early if needed
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     local devicons = require("nvim-web-devicons")
+  --     local helpers = require("incline.helpers")
+
+  --     require("incline").setup({
+  --       highlight = {
+  --         groups = {
+  --           -- Active buffer
+  --           InclineNormal = {
+  --             guibg = "#44406e",
+  --             gui = "bold",
+  --           },
+  --           -- Inactive buffer
+  --           InclineNormalNC = { 
+  --             guifg = "#7aa2f7",
+  --             guibg = "#44406e",
+  --           },
+  --         },
+  --       },
+  --       window = {
+  --         padding = 0,
+  --         margin = { vertical = 0, horizontal = 0 }, -- remove extra vertical space
+  --       },
+  --       hide = {
+  --         cursorline = true, -- hide when cursorline is active
+  --       },
+  --       render = function(props)
+  --         -- get relative filename (tail)
+  --         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+  --         local icon, color = devicons.get_icon_color(filename)
+  --         local modified = vim.bo[props.buf].modified
+
+  --         -- If no valid color, fallback to a default
+  --         if not color or color == "NONE" then
+  --           color = "#44406e"
+  --         end
+
+  --         return {
+  --           { ' ', icon or "", ' ', guibg = color, guifg = helpers.contrast_color(color) },
+  --           ' ',
+  --           { modified and { '[+]', filename } or filename },
+  --           ' ',
+  --         }
+  --       end,
+  --     })
+  --   end,
+  -- },
+
   -- 📁 Nvim-tree: File explorer tree
   {
     "nvim-tree/nvim-tree.lua",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup({
-        view = { width = 35, relativenumber = true },
+        filters = { dotfiles = false },
+        disable_netrw = true,
+        hijack_cursor = true,
+        sync_root_with_cwd = true,
+        update_focused_file = {
+          enable = true,
+          update_root = false,
+        },
+        view = {
+          width = 30,
+          preserve_window_proportions = true,
+        },
         renderer = {
+          root_folder_label = false,
+          highlight_git = true,
           indent_markers = { enable = true },
           icons = {
             glyphs = {
-              folder = { arrow_closed = "\u{1F449}", arrow_open = "\u{1F447}" },
+              default = "󰈚",
+              folder = {
+                default = "",
+                empty = "",
+                empty_open = "",
+                open = "",
+                symlink = "",
+              },
+              git = { unmerged = "" },
             },
           },
         },
-        actions = { open_file = { window_picker = { enable = false } } },
-        git = { ignore = false },
       })
     end,
   },
