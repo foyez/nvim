@@ -93,7 +93,8 @@ return {
           show_close_icon = false,
           separator_style = "none",
           offsets = {
-            { filetype = "NvimTree", text = "File Explorer", text_align = "left" },
+            -- hide the label shown above the tree by using an empty text
+            { filetype = "NvimTree", text = "", text_align = "left" },
           },
         },
       })
