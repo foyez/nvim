@@ -81,7 +81,8 @@ return {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    event = "BufReadPre",
+    -- load on VimEnter so bufferline initializes correctly on startup
+    event = "VimEnter",
     config = function()
       require("bufferline").setup({
         options = {
