@@ -195,4 +195,45 @@ return {
       })
     end,
   },
+
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		event = { "BufReadPost", "BufNewFile" },  -- ✅ ensures setup runs after buffers load
+		opts = {
+			indent = {
+				char = "│",
+				highlight = "IblIndent",
+			},
+			scope = {
+				enabled = true,
+				char = "│",
+				highlight = "IblScope",
+			},
+		},
+		config = function(_, opts)
+			local hooks = require("ibl.hooks")
+
+			-- Define subtle VS Code–style highlights
+			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+				vim.api.nvim_set_hl(0, "IblIndent", { fg = "#3A3F4B", nocombine = true })
+				vim.api.nvim_set_hl(0, "IblScope", { fg = "#565C64", nocombine = true })
+			end)
+
+			-- Hide the first indent level for neatness
+			hooks.register(
+				hooks.type.WHITESPACE,
+				hooks.builtin.hide_first_space_indent_level
+			)
+
+			require("ibl").setup(opts)
+
+			-- ✅ Ensure it attaches to already-open buffers
+			vim.api.nvim_create_autocmd("BufWinEnter", {
+				callback = function()
+					require("ibl").setup_buffer(0)
+				end,
+			})
+		end,
+	},
 }
