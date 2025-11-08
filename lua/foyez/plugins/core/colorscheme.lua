@@ -1,46 +1,64 @@
 return {
-  -- Tokyonight
+  -- -- Tokyonight
+  -- {
+  --   "folke/tokyonight.nvim",
+		-- lazy = false, -- load immediately
+		-- priority = 1000, -- load before other plugins
+  --   config = function()
+  --     require("tokyonight").setup({
+  --       style = "moon", -- moon, storm, night, day
+  --       transparent = true,
+  --       dim_inactive = true,
+  --       terminal_colors = true,
+  --       on_highlights = function(hl, c)
+  --         hl.VertSplit = { fg = c.orange, bg = "NONE" }
+  --         hl.WinSeparator = { fg = c.orange, bg = "NONE" }
+  --       end,
+  --     })
+  --     vim.cmd.colorscheme("tokyonight")
+  --   end,
+  -- },
+
+	-- -- Onedark
+ --  {
+ --    "navarasu/onedark.nvim",
+	-- 	lazy = false, -- load immediately
+	-- 	priority = 1000, -- load before other plugins
+ --    config = function()
+ --      require("onedark").setup({
+ --        style = "darker", -- dark, darker, cool, deep, warm, warmer, light
+ --        -- transparent = true,
+ --        dim_inactive = true,
+ --        term_colors = true,
+	-- 			toggle_style_key = "<leader>th",
+	-- 			toggle_style_list = {'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'},
+ --      })
+ --      vim.cmd.colorscheme("onedark")
+ --    end,
+ --  },
+
+  -- Catppuccin
   {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
 		lazy = false, -- load immediately
 		priority = 1000, -- load before other plugins
     config = function()
-      require("tokyonight").setup({
-        style = "moon", -- moon, storm, night, day
-        transparent = true,
-        dim_inactive = true,
-        terminal_colors = true,
-        on_highlights = function(hl, c)
-          hl.VertSplit = { fg = c.orange, bg = "NONE" }
-          hl.WinSeparator = { fg = c.orange, bg = "NONE" }
-        end,
+      require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        background = {
+            light = "latte",
+            dark = "mocha",
+        },
+        transparent_background = false,
+        integrations = {
+          treesitter = true,
+          native_lsp = { enabled = true },
+          telescope = true,
+        },
       })
-      vim.cmd.colorscheme("tokyonight")
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
-
-  -- Catppuccin
-  -- {
-  --   "catppuccin/nvim",
-	-- 	lazy = false, -- load immediately
-	-- 	priority = 1000, -- load before other plugins
-  --   config = function()
-  --     require("catppuccin").setup({
-  --       flavour = "mocha", -- latte, frappe, macchiato, mocha
-  --       background = {
-  --           light = "latte",
-  --           dark = "mocha",
-  --       },
-  --       transparent_background = false,
-  --       integrations = {
-  --         treesitter = true,
-  --         native_lsp = { enabled = true },
-  --         telescope = true,
-  --       },
-  --     })
-  --     vim.cmd.colorscheme("catppuccin")
-  --   end,
-  -- },
 
   -- kanagawa
   -- {
