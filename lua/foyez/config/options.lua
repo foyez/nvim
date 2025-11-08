@@ -14,6 +14,9 @@ opt.wrap = false
 opt.mouse = "" -- Disable mouse support
 opt.winminheight = 0
 opt.winminwidth = 0
+-- Hide trailing ~ lines (end-of-buffer) globally (also affects NvimTree)
+-- This makes the empty area after the end of file appear blank
+opt.fillchars = { eob = " " }
 
 -- Indentation
 opt.tabstop = 2
