@@ -57,7 +57,7 @@ return {
     "mbbill/undotree",
     event = "VeryLazy",
     config = function() 
-      vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+      vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
     end
   },
 
@@ -137,12 +137,12 @@ return {
 					kitty = { enabled = false, font = "+2" },
 					wezterm = { enabled = false, font = "+2" },
 				},
-        on_open = function(win)
-          require("incline").disable()
-        end,
-        on_close = function()
-          require("incline").enable()
-        end,
+        -- on_open = function(win)
+        --   require("incline").disable()
+        -- end,
+        -- on_close = function()
+        --   require("incline").enable()
+        -- end,
 			})
 		end,
 	},
